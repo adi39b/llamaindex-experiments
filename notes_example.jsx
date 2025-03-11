@@ -1,12 +1,5 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Trash2 } from 'lucide-react';
-import { Card } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-
 export default function NotesElement() {
-  // Remember props are globally injected, not passed as arguments
+  // In Chainlit custom elements, props and updateElement are globally available
   
   const deleteNote = (noteId) => {
     // Filter out the deleted note
@@ -19,33 +12,31 @@ export default function NotesElement() {
     <div className="w-full p-4">
       <h3 className="text-lg font-semibold mb-4">Recorded Notes</h3>
       
-      {props.notes.length === 0 ? (
-        <p className="text-muted-foreground text-sm italic">
+      {(!props.notes || props.notes.length === 0) ? (
+        <p className="text-gray-500 text-sm italic">
           No notes yet. Add a note by typing "/note" followed by your note text.
         </p>
       ) : (
-        <ScrollArea className="h-[500px] w-full pr-4">
+        <div className="max-h-[500px] overflow-auto pr-4">
           <div className="flex flex-col gap-3">
             {props.notes.map((note) => (
-              <Card key={note.id} className="p-3">
+              <div key={note.id} className="border rounded p-3 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
                 <div className="flex justify-between">
                   <div className="flex-1">
                     <p className="text-sm mb-2">{note.content}</p>
-                    <p className="text-xs text-muted-foreground">{note.timestamp}</p>
+                    <p className="text-xs text-gray-500">{note.timestamp}</p>
                   </div>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
+                  <button 
+                    className="h-6 w-6 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
                     onClick={() => deleteNote(note.id)}
-                    className="h-6 w-6"
                   >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
+                    🗑️
+                  </button>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
-        </ScrollArea>
+        </div>
       )}
     </div>
   );
