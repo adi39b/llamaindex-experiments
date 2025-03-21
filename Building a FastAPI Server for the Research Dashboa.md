@@ -592,7 +592,7 @@ def filter_table(company, status, start_date, end_date, clear_clicks, refresh_cl
     
     # Check if clear button was clicked
     ctx = dash.callback_context
-    if ctx.triggered and 'clear-filters' in ctx.triggered[^0]['prop_id']:
+    if ctx.triggered and 'clear-filters' in ctx.triggered[^1_0]['prop_id']:
         filtered_df = df
     else:
         # Apply filters
@@ -625,13 +625,13 @@ def filter_table(company, status, start_date, end_date, clear_clicks, refresh_cl
 )
 def toggle_modal(selected_rows, close_clicks, data, is_open):
     ctx = dash.callback_context
-    trigger = ctx.triggered[^0]["prop_id"].split(".")[^0]
+    trigger = ctx.triggered[^1_0]["prop_id"].split(".")[^1_0]
     
     if trigger == "close-modal":
         return False, None
     
     if selected_rows:
-        run_id = data[selected_rows[^0]]["id"]
+        run_id = data[selected_rows[^1_0]]["id"]
         
         try:
             # Fetch run details
@@ -644,7 +644,7 @@ def toggle_modal(selected_rows, close_clicks, data, is_open):
             
             # Create content for the modal
             content = html.Div([
-                html.H4(f"Research Run #{run_id}: {data[selected_rows[^0]]['company']}"),
+                html.H4(f"Research Run #{run_id}: {data[selected_rows[^1_0]]['company']}"),
                 html.Hr(),
                 
                 # Research steps timeline
@@ -737,55 +737,326 @@ This implementation provides a robust backend for the research dashboard while m
 
 <div style="text-align: center">⁂</div>
 
-[^1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/55981580/1bf656b6-0765-45e3-92e6-abd0df7a1e3f/paste.txt
+[^1_1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/55981580/1bf656b6-0765-45e3-92e6-abd0df7a1e3f/paste.txt
 
-[^2]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/55981580/c1e7dc9b-2865-4af1-b6dd-ee296956e7fc/paste-2.txt
+[^1_2]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/55981580/c1e7dc9b-2865-4af1-b6dd-ee296956e7fc/paste-2.txt
 
-[^3]: https://www.restack.io/p/fastapi-answer-mount-dash-app
+[^1_3]: https://www.restack.io/p/fastapi-answer-mount-dash-app
 
-[^4]: https://community.plotly.com/t/create-an-api-using-dash/61600
+[^1_4]: https://community.plotly.com/t/create-an-api-using-dash/61600
 
-[^5]: https://apidog.com/blog/logging-endpoints-python-fastapi/
+[^1_5]: https://apidog.com/blog/logging-endpoints-python-fastapi/
 
-[^6]: https://timberry.dev/adding-an-sqlite-backend-to-fastapi
+[^1_6]: https://timberry.dev/adding-an-sqlite-backend-to-fastapi
 
-[^7]: https://apidog.com/blog/how-to-quickly-implement-crud-operations-with-fastapi/
+[^1_7]: https://apidog.com/blog/how-to-quickly-implement-crud-operations-with-fastapi/
 
-[^8]: https://community.plotly.com/t/best-method-for-triggering-a-backend-update-data-refresh/38585
+[^1_8]: https://community.plotly.com/t/best-method-for-triggering-a-backend-update-data-refresh/38585
 
-[^9]: https://stackoverflow.com/questions/61359017/is-there-a-user-controlled-way-to-refresh-data-in-a-dash-app
+[^1_9]: https://stackoverflow.com/questions/61359017/is-there-a-user-controlled-way-to-refresh-data-in-a-dash-app
 
-[^10]: https://community.dataiku.com/discussion/38604/update-dataset-with-dash
+[^1_10]: https://community.dataiku.com/discussion/38604/update-dataset-with-dash
 
-[^11]: https://fastapi.tiangolo.com/tutorial/sql-databases/
+[^1_11]: https://fastapi.tiangolo.com/tutorial/sql-databases/
 
-[^12]: https://community.plotly.com/t/update-dash-layout-using-rest-api/17555
+[^1_12]: https://community.plotly.com/t/update-dash-layout-using-rest-api/17555
 
-[^13]: https://www.youtube.com/watch?v=1RLFSOwpf88
+[^1_13]: https://www.youtube.com/watch?v=1RLFSOwpf88
 
-[^14]: https://www.cdata.com/kb/tech/rest-python-dash.rst
+[^1_14]: https://www.cdata.com/kb/tech/rest-python-dash.rst
 
-[^15]: https://prefab.cloud/blog/dynamic-logging-in-fastapi-with-python/
+[^1_15]: https://prefab.cloud/blog/dynamic-logging-in-fastapi-with-python/
 
-[^16]: https://realpython.com/python-dash/
+[^1_16]: https://realpython.com/python-dash/
 
-[^17]: https://www.linkedin.com/pulse/centralized-logging-fastapi-elasticsearch-kibana-parasuraman-xmn9c
+[^1_17]: https://www.linkedin.com/pulse/centralized-logging-fastapi-elasticsearch-kibana-parasuraman-xmn9c
 
-[^18]: https://stackoverflow.com/questions/57381166/how-can-i-make-api-calls-via-browser-from-dash-plotly-application
+[^1_18]: https://stackoverflow.com/questions/57381166/how-can-i-make-api-calls-via-browser-from-dash-plotly-application
 
-[^19]: https://www.youtube.com/watch?v=Z0jbO8WT0Jc
+[^1_19]: https://www.youtube.com/watch?v=Z0jbO8WT0Jc
 
-[^20]: https://github.com/wpcodevo/fastapi_sqlalchemy
+[^1_20]: https://github.com/wpcodevo/fastapi_sqlalchemy
 
-[^21]: https://dev.to/tomas223/logging-tracing-in-python-fastapi-with-opencensus-a-azure-2jcm
+[^1_21]: https://dev.to/tomas223/logging-tracing-in-python-fastapi-with-opencensus-a-azure-2jcm
 
-[^22]: https://stackoverflow.com/questions/65270624/how-to-connect-to-a-sqlite3-db-file-and-fetch-contents-in-fastapi
+[^1_22]: https://stackoverflow.com/questions/65270624/how-to-connect-to-a-sqlite3-db-file-and-fetch-contents-in-fastapi
 
-[^23]: https://github.com/foss42/apidash
+[^1_23]: https://github.com/foss42/apidash
 
-[^24]: https://community.plotly.com/t/refresh-dataframe-on-page-load/55139
+[^1_24]: https://community.plotly.com/t/refresh-dataframe-on-page-load/55139
 
-[^25]: https://docs.posit.co/connect/user/dash/
+[^1_25]: https://docs.posit.co/connect/user/dash/
 
-[^26]: https://community.plotly.com/t/update-plot-in-dash-from-rest-api/10612
+[^1_26]: https://community.plotly.com/t/update-plot-in-dash-from-rest-api/10612
+
+---
+
+# Provide instructions for running both the dash application and FastAPI flow in docker containers and call a database service
+
+Here's a step-by-step guide to running both the Dash application and the FastAPI server in Docker containers, along with a SQLite database service.
+
+## Step 1: Create Dockerfiles
+
+First, you need to create Dockerfiles for both your Dash application and the FastAPI server.
+
+### Dockerfile for Dash Application
+
+Create a file named `Dockerfile-dash` in the root of your Dash project:
+
+```dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the requirements file
+COPY requirements.txt .
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the application code
+COPY . .
+
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
+
+# Define environment variable
+ENV NAME World
+
+# Run app.py when the container launches
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+However, since you're using Dash, you should adjust the `CMD` command to run your Dash app instead:
+
+```dockerfile
+CMD ["python", "app.py"]
+```
+
+
+### Dockerfile for FastAPI Server
+
+Create a file named `Dockerfile-fastapi` in the root of your FastAPI project:
+
+```dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the requirements file
+COPY requirements.txt .
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the application code
+COPY . .
+
+# Make port 8001 available to the world outside this container
+EXPOSE 8001
+
+# Run main.py when the container launches
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]
+```
+
+
+## Step 2: Create a Docker Compose File
+
+To manage multiple containers and services, you can use Docker Compose. Create a file named `docker-compose.yml` in the root directory of your project:
+
+```yaml
+version: '3.8'
+
+services:
+  dash-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-dash
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=sqlite:///db/research.db
+
+  fastapi-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-fastapi
+    ports:
+      - "8001:8001"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=sqlite:///db/research.db
+
+  db:
+    image: busybox
+    volumes:
+      - ./db:/db
+```
+
+However, since SQLite doesn't run as a service like a traditional database server, you should adjust the `docker-compose.yml` to simply mount a volume for the database file:
+
+```yaml
+version: '3.8'
+
+services:
+  dash-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-dash
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./db:/app/db
+    environment:
+      - DATABASE_URL=sqlite:///db/research.db
+
+  fastapi-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-fastapi
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./db:/app/db
+    environment:
+      - DATABASE_URL=sqlite:///db/research.db
+```
+
+
+## Step 3: Build and Run Docker Containers
+
+1. **Build the Docker images** for both services:
+
+```bash
+docker-compose build
+```
+
+2. **Run the Docker containers**:
+
+```bash
+docker-compose up
+```
+
+This command will start both the Dash application and the FastAPI server, along with mounting the SQLite database file.
+
+## Step 4: Access Your Applications
+
+- **Dash Application**: You can access your Dash app at `http://localhost:8000/`.
+- **FastAPI Server**: You can access your FastAPI server at `http://localhost:8001/`.
+
+
+## Additional Notes
+
+- Ensure that your `requirements.txt` files are correctly configured for both projects.
+- If you're using a different port for your Dash app or FastAPI server in your code, adjust the `ports` section in `docker-compose.yml` accordingly.
+- The SQLite database file will be stored in a `db` directory in your project root. Make sure this directory exists or create it before running the containers.
+
+<div style="text-align: center">⁂</div>
+
+[^2_1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/55981580/1bf656b6-0765-45e3-92e6-abd0df7a1e3f/paste.txt
+
+[^2_2]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/55981580/c1e7dc9b-2865-4af1-b6dd-ee296956e7fc/paste-2.txt
+
+---
+
+# How does data in the json get saved within sqlite?
+
+When you store JSON data in SQLite, it is typically stored as a string in a TEXT column. SQLite does not have a native JSON data type like some other databases (e.g., PostgreSQL or MySQL), but it does support functions for working with JSON data, such as `json()` and `json_array()`, which were introduced in SQLite version 3.9.0.
+
+Here's how you might store JSON data in SQLite using Python's `sqlite3` module or an ORM like SQLAlchemy:
+
+### Using sqlite3
+
+```python
+import sqlite3
+import json
+
+# Sample JSON data
+data = {
+    "market_share": 25,
+    "competitors": ["Competitor 1", "Competitor 2"]
+}
+
+# Convert JSON to string
+json_string = json.dumps(data)
+
+# Connect to SQLite database
+conn = sqlite3.connect('research.db')
+cursor = conn.cursor()
+
+# Create table if it doesn't exist
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS research_results (
+        id INTEGER PRIMARY KEY,
+        result_type TEXT,
+        result_data TEXT
+    )
+''')
+
+# Insert JSON data into the table
+cursor.execute('INSERT INTO research_results (result_type, result_data) VALUES (?, ?)', ('market_position', json_string))
+
+# Commit changes and close connection
+conn.commit()
+conn.close()
+```
+
+
+### Using SQLAlchemy
+
+In your FastAPI application, you're using SQLAlchemy to interact with the database. Here's how you might define a model to store JSON data:
+
+```python
+from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+class ResearchResult(Base):
+    __tablename__ = "research_results"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    result_type = Column(String)
+    result_data = Column(Text)  # Store JSON as a string
+    
+    def __init__(self, result_type, result_data):
+        self.result_type = result_type
+        self.result_data = json.dumps(result_data)
+```
+
+Then, when you create a new `ResearchResult`, you pass the JSON data as a Python dictionary, which gets converted to a string:
+
+```python
+result_data = {
+    "market_share": 25,
+    "competitors": ["Competitor 1", "Competitor 2"]
+}
+
+new_result = ResearchResult("market_position", result_data)
+db.add(new_result)
+db.commit()
+```
+
+When you retrieve the data, you can convert it back to a Python dictionary using `json.loads()`:
+
+```python
+result = db.query(ResearchResult).first()
+data = json.loads(result.result_data)
+print(data)  # Prints: {'market_share': 25, 'competitors': ['Competitor 1', 'Competitor 2']}
+```
+
+This approach allows you to store structured data in a flexible format within SQLite, even though SQLite doesn't natively support JSON types.
+
+<div style="text-align: center">⁂</div>
+
+[^3_1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/55981580/1bf656b6-0765-45e3-92e6-abd0df7a1e3f/paste.txt
+
+[^3_2]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/55981580/c1e7dc9b-2865-4af1-b6dd-ee296956e7fc/paste-2.txt
 
