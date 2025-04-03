@@ -1,0 +1,82 @@
+/* assets/print.css */
+
+@media print {
+
+    /* --- Hide elements not meant for print --- */
+    .no-print,               /* Hide elements specifically marked */
+    #controls-container,    /* Hide the whole controls section by ID */
+    nav,                    /* Hide typical navigation elements */
+    aside,                  /* Hide typical sidebar elements */
+    header:not(#report-header), /* Hide headers unless specifically for the report */
+    footer:not(#report-footer)  /* Hide footers unless specifically for the report */
+    {
+        display: none !important; /* Use !important judiciously, but often needed here */
+    }
+
+    /* --- General Page Setup --- */
+    body {
+        font-family: serif; /* Often better for print */
+        font-size: 11pt;
+        line-height: 1.3;
+        margin: 0; /* Remove default body margins */
+        background-color: white; /* Ensure white background */
+    }
+
+    #report-container {
+        margin: 1in; /* Standard document margins */
+        width: auto; /* Let it flow naturally */
+        box-shadow: none; /* Remove web shadows */
+        border: none; /* Remove web borders */
+    }
+
+    /* --- Page Break Control --- */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid; /* Try not to break pages right after a heading */
+    }
+
+    /* Start new major sections on a new page if desired */
+    .section-start {
+         page-break-before: always;
+    }
+
+    table, figure, img, .graph-container /* Add a class to graph divs */ {
+        page-break-inside: avoid; /* Try not to break inside tables, figures, graphs */
+    }
+
+    p, li {
+        orphans: 3; /* Minimum lines at bottom of page before break */
+        widows: 3;  /* Minimum lines at top of new page after break */
+    }
+
+    /* --- Component Specific Styling --- */
+    .dash-graph {
+         /* Ensure graphs take appropriate width */
+        max-width: 100% !important;
+        height: auto !important; /* Let height adjust */
+    }
+
+    .dash-spreadsheet, /* Target Dash Tables */
+    .dash-dataTable {
+         font-size: 9pt; /* Maybe smaller font for tables */
+         overflow: visible; /* Ensure table doesn't get cut off if too wide (might overflow page) */
+    }
+
+     /* Optional: Add page numbers/headers/footers (browser support varies) */
+     @page {
+         size: A4 portrait; /* Or landscape */
+         margin: 1in; /* Define page margins here too */
+
+         /* Basic page numbering - often limited */
+         /* @bottom-center {
+             content: "Page " counter(page);
+         } */
+     }
+}
+
+/* --- Optional: Web styles for better visual separation if needed --- */
+/* (These won't apply during print because of @media print overrides) */
+/* #report-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+} */
